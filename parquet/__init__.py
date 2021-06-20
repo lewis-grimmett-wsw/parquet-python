@@ -432,7 +432,7 @@ def reader(file_obj, columns=None):
     footer = _read_footer(file_obj)
     schema_helper = schema.SchemaHelper(footer.schema)
     keys = columns if columns else [s.name for s in
-                                    footer.schema if s.type]
+                                    footer.schema if s.type is not None]
     debug_logging = logger.isEnabledFor(logging.DEBUG)
     for row_group in footer.row_groups:
         res = defaultdict(list)

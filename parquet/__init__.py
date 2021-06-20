@@ -410,7 +410,7 @@ def DictReader(file_obj, columns=None):  # pylint: disable=invalid-name
     """
     footer = _read_footer(file_obj)
     keys = columns if columns else [s.name for s in
-                                    footer.schema if s.type]
+                                    footer.schema if s.type is not None]
 
     for row in reader(file_obj, columns):
         yield OrderedDict(zip(keys, row))
